@@ -1,0 +1,121 @@
+.mod-moodtracker .moodtracker-checkin {
+    max-width: 900px;
+    margin: 2rem auto;
+}
+
+.mod-moodtracker .moodtracker-options {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(110px, 1fr));
+    gap: 1rem;
+}
+
+.mod-moodtracker .moodtracker-option {
+    min-height: 150px;
+    padding: 1rem;
+    border: 2px solid var(--bs-border-color, #dee2e6);
+    border-radius: 1rem;
+    background: var(--bs-body-bg, #fff);
+    color: inherit;
+    cursor: pointer;
+    transition: transform .15s ease, border-color .15s ease, box-shadow .15s ease;
+}
+
+.mod-moodtracker .moodtracker-option:hover:not(:disabled),
+.mod-moodtracker .moodtracker-option:focus-visible {
+    transform: translateY(-2px);
+    border-color: var(--bs-primary, #0f6cbf);
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .12);
+}
+
+.mod-moodtracker .moodtracker-option.is-selected {
+    border-color: var(--bs-primary, #0f6cbf);
+    box-shadow: 0 0 0 .2rem rgba(15, 108, 191, .15);
+}
+
+.mod-moodtracker .moodtracker-option:disabled {
+    cursor: default;
+    opacity: .72;
+}
+
+.mod-moodtracker .moodtracker-emoji {
+    display: block;
+    font-size: 4rem;
+    line-height: 1.1;
+    margin-bottom: .75rem;
+}
+
+.mod-moodtracker .moodtracker-label {
+    display: block;
+    font-weight: 600;
+}
+
+.mod-moodtracker .moodtracker-report {
+    max-width: 960px;
+    margin: 2rem auto;
+}
+
+.mod-moodtracker .moodtracker-chart-row {
+    display: grid;
+    grid-template-columns: 190px 1fr 110px;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.mod-moodtracker .moodtracker-chart-mood {
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    font-weight: 600;
+}
+
+.mod-moodtracker .moodtracker-chart-emoji {
+    font-size: 2rem;
+}
+
+.mod-moodtracker .moodtracker-chart-track {
+    height: 28px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: var(--bs-secondary-bg, #e9ecef);
+}
+
+.mod-moodtracker .moodtracker-chart-bar {
+    height: 100%;
+    min-width: 0;
+    border-radius: 999px;
+    background: var(--bs-primary, #0f6cbf);
+}
+
+.mod-moodtracker .moodtracker-chart-value {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 767.98px) {
+    .mod-moodtracker .moodtracker-options {
+        grid-template-columns: 1fr;
+    }
+
+    .mod-moodtracker .moodtracker-option {
+        min-height: 0;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        text-align: left;
+    }
+
+    .mod-moodtracker .moodtracker-emoji {
+        margin: 0;
+        font-size: 3rem;
+    }
+
+    .mod-moodtracker .moodtracker-chart-row {
+        grid-template-columns: 1fr;
+        gap: .35rem;
+    }
+
+    .mod-moodtracker .moodtracker-chart-value {
+        text-align: left;
+    }
+}
