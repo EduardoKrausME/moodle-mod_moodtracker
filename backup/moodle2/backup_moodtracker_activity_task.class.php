@@ -22,6 +22,10 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+defined('MOODLE_INTERNAL') || die();
+
+require_once(__DIR__ . '/backup_moodtracker_stepslib.php');
+
 /**
  * backup_moodtracker_activity_task
  */
