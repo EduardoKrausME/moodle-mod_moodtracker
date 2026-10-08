@@ -15,17 +15,36 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * version.php
+ * Moodle activity view event.
  *
  * @package   mod_moodtracker
- * @copyright 2026 Eduardo Kraus {@link https://eduardokraus.com}
+ * @copyright 2026 Eduardo Kraus
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') || die;
+namespace mod_moodtracker\event;
 
-$plugin->version = 2026100800;
-$plugin->release = '1.1.4';
-$plugin->component = "mod_moodtracker";
-$plugin->requires = 2022112800;
-$plugin->maturity = MATURITY_STABLE;
+defined('MOODLE_INTERNAL') || die();
+
+/**
+ * Event triggered when a mood tracker activity is viewed.
+ */
+class course_module_viewed extends \core\event\course_module_viewed {
+    /**
+     * Define event properties.
+     */
+    protected function init() {
+        $this->data['crud'] = 'r';
+        $this->data['edulevel'] = self::LEVEL_PARTICIPATING;
+        $this->data['objecttable'] = 'moodtracker';
+    }
+
+    /**
+     * Map activity IDs when a course is restored.
+     *
+     * @return array
+     */
+    public static function get_objectid_mapping() {
+        return ['db' => 'moodtracker', 'restore' => 'moodtracker'];
+    }
+}

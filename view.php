@@ -33,6 +33,19 @@ require_login($course, true, $cm);
 $context = context_module::instance($cm->id);
 require_capability("mod/moodtracker:view", $context);
 
+// Log the activity view for course participation and reporting.
+$event = \mod_moodtracker\event\course_module_viewed::create([
+    "objectid" => $moodtracker->id,
+    "context" => $context,
+]);
+$event->add_record_snapshot("course", $course);
+$event->add_record_snapshot("moodtracker", $moodtracker);
+$event->trigger();
+
+// Honour the standard Moodle completion condition: student must view this activity.
+$completion = new completion_info($course);
+$completion->set_module_viewed($cm);
+
 $PAGE->set_url("/mod/moodtracker/view.php", ["id" => $cm->id]);
 $PAGE->set_title(format_string($moodtracker->name));
 $PAGE->set_heading(format_string($course->fullname));

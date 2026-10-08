@@ -26,8 +26,10 @@ namespace mod_moodtracker\privacy;
 
 use core_privacy\local\metadata\collection;
 use core_privacy\local\request\approved_contextlist;
+use core_privacy\local\request\approved_userlist;
 use core_privacy\local\request\contextlist;
 use core_privacy\local\request\transform;
+use core_privacy\local\request\userlist;
 use core_privacy\local\request\writer;
 
 /**
@@ -35,7 +37,8 @@ use core_privacy\local\request\writer;
  */
 class provider implements
     \core_privacy\local\metadata\provider,
-    \core_privacy\local\request\plugin\provider {
+    \core_privacy\local\request\plugin\provider,
+    \core_privacy\local\request\core_userlist_provider {
 
     /**
      * Method get_metadata.
@@ -78,6 +81,53 @@ class provider implements
             "userid" => $userid,
         ]);
         return $contextlist;
+    }
+
+    /**
+     * Find users with mood responses in the given activity context.
+     *
+     * @param userlist $userlist The users in the requested context.
+     */
+    public static function get_users_in_context(userlist $userlist): void {
+        $context = $userlist->get_context();
+        if ($context->contextlevel !== CONTEXT_MODULE) {
+            return;
+        }
+        $cm = get_coursemodule_from_id("moodtracker", $context->instanceid);
+        if (!$cm) {
+            return;
+        }
+
+        $sql = "SELECT userid FROM {moodtracker_responses} WHERE moodtrackerid = :moodtrackerid";
+        $userlist->add_from_sql("userid", $sql, ["moodtrackerid" => $cm->instance]);
+    }
+
+    /**
+     * Delete mood responses for an approved list of users in one activity.
+     *
+     * @param approved_userlist $userlist The approved users and context.
+     */
+    public static function delete_data_for_users(approved_userlist $userlist): void {
+        global $DB;
+
+        $context = $userlist->get_context();
+        if ($context->contextlevel !== CONTEXT_MODULE) {
+            return;
+        }
+
+        $cm = get_coursemodule_from_id("moodtracker", $context->instanceid);
+        $userids = $userlist->get_userids();
+        if (!$cm || empty($userids)) {
+            return;
+        }
+
+        [$usersql, $userparams] = $DB->get_in_or_equal($userids, SQL_PARAMS_NAMED);
+        $params = array_merge(["moodtrackerid" => $cm->instance], $userparams);
+        $DB->delete_records_select(
+            "moodtracker_responses",
+            "moodtrackerid = :moodtrackerid AND userid $usersql",
+            $params
+        );
     }
 
     /**
