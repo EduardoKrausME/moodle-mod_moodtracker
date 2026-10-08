@@ -34,8 +34,9 @@ function moodtracker_supports($feature) {
             return MOD_ARCHETYPE_OTHER;
         case FEATURE_MOD_INTRO:
         case FEATURE_SHOW_DESCRIPTION:
-        case FEATURE_BACKUP_MOODLE2:
         case FEATURE_COMPLETION_TRACKS_VIEWS:
+            return true;
+        case FEATURE_BACKUP_MOODLE2:
             return true;
         case FEATURE_GRADE_HAS_GRADE:
             return false;

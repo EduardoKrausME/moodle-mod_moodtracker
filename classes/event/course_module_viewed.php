@@ -24,8 +24,6 @@
 
 namespace mod_moodtracker\event;
 
-defined('MOODLE_INTERNAL') || die();
-
 /**
  * Event triggered when a mood tracker activity is viewed.
  */
