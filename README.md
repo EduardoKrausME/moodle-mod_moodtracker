@@ -4,14 +4,6 @@
 
 Teachers may allow students to change their response after submission or lock it after the first check-in. Only the most recent answer for each student and activity is retained.
 
-## Installation
-
-Requires Moodle 4.1 or newer (and the PHP version supported by your Moodle release).
-
-Download **moodtracker.zip** from the [GitHub Releases](https://github.com/EduardoKrausME/moodle-mod_moodtracker/releases) page and use *Site administration > Plugins > Install plugins*, or copy the plugin files into `mod/moodtracker` and complete the Moodle upgrade.
-
-**Do not install GitHub's automatically generated "Source code (zip)" archive directly.** Its enclosing folder is not named `moodtracker`. The attached `moodtracker.zip` release package uses the correct root directory.
-
 ## Features
 
 - Five mood choices: Very good, Good, Neutral, Not good and Frustrated.
