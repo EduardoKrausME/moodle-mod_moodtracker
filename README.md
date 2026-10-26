@@ -19,7 +19,7 @@ Each activity stores a student's latest mood value, user ID, and creation/update
 
 **Class Mood Tracker** is a Moodle activity for quickly checking how students are feeling during a course. Students choose one of five mood options, while teachers view the aggregated distribution in a class dashboard, including how many learners have responded and how many are still pending. Teachers control whether responses can be changed after submission. Only the latest response for each learner is stored, and classmates cannot see individual answers.
 
-The plugin supports Moodle capabilities, standard activity completion by viewing, course log events, backup and restore, and Moodle Privacy API export and deletion requests. Requires Moodle 4.1 or later. Install the correctly structured `moodtracker.zip` release package into `mod/moodtracker`.
+The plugin supports Moodle capabilities, standard activity completion by viewing, course log events, backup and restore, and Moodle Privacy API export and deletion requests. Requires Moodle 4.1 or later..
 
 ## Screenshots for the Moodle Plugins directory
 
