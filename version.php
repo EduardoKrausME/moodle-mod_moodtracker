@@ -24,8 +24,8 @@
 
 defined('MOODLE_INTERNAL') || die;
 
-$plugin->version = 2026101500;
-$plugin->release = '1.1.7';
+$plugin->version = 2026103100;
+$plugin->release = '1.1.8';
 $plugin->component = "mod_moodtracker";
 $plugin->requires = 2022112800;
 $plugin->maturity = MATURITY_STABLE;
