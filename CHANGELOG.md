@@ -2,6 +2,14 @@
 
 This changelog documents only the two most recent published GitHub releases. Each entry reflects the changes between that release tag and the immediately preceding published tag. Changes made later on `master` are not included.
 
+## 1.1.8 - 2026-11-01
+
+- Updated the check-in and report Mustache templates.
+- Removed installation instructions from the README and refreshed historical release documentation.
+- Updated the release workflow; no additional PHP runtime changes were identified.
+
+**Full comparison:** [1.1.7...1.1.8](https://github.com/EduardoKrausME/moodle-mod_moodtracker/compare/1.1.7...1.1.8)
+
 ## 1.1.7 - 2026-10-15
 
 ### Changed
